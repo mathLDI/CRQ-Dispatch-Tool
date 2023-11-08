@@ -157,7 +157,7 @@ function App() {
                       {/** Add the PDF here using an iframe */}
                       <iframe 
                       title="PDF Viewer" 
-                      src=".\src\assets\RCAMv3.3.pdf" 
+                      src="/RCAMv3.3.pdf"
                       style={{
                         width: 'calc(100vh - 100px)',
                         height: 'calc(100vh - 100px)', // Adjust the height as needed
