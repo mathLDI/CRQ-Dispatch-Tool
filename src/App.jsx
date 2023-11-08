@@ -157,14 +157,14 @@ function App() {
                       {/** Add the PDF here using an iframe */}
                       <iframe 
                       title="PDF Viewer" 
-                      src="/RCAMv3.3.pdf"
+                      src="./RCAMv3.3.pdf"
                       style={{
                         width: 'calc(100vh - 100px)',
                         height: 'calc(100vh - 100px)', // Adjust the height as needed
                         border: 'none',
                       }}
                       >
-                        This browser does not support PDFs. Please <a href="./assets/RCAMv3.3.pdf">download the PDF</a>.
+                        This browser does not support PDFs. Please <a href="./RCAMv3.3.pdf">download the PDF</a>.
                       </iframe>
                     </div>
                   )}
