@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChoiceListbox } from "../ListBox.jsx";
 import { Card } from "../Card.jsx"
 import { CustomButton } from "../Button.jsx";
@@ -9,14 +9,13 @@ import HeadwindTailwindComponentNoNegOneDigit from '../functions/headwindTailwin
 import PropTypes from "prop-types";
 
 
+
 const SecondPageCrosswindCalculator = ({ initialAircraftType, setAircraftTypeHandler,
     initialRunwayHeading, setRunwayHeadingHandler, initialWindDirection, setWindDirectionHandler,
     initialWindSpeed, setWindSpeedHandler,
 
-}) => {
 
-    ////the props for initialAircraftType, setAircraftTypeHandler will need to be checked, not working
-    ///all the props and state ar ok,, but dropdown doesnt keep the correct state///
+}) => {
 
 
 
@@ -68,6 +67,10 @@ const SecondPageCrosswindCalculator = ({ initialAircraftType, setAircraftTypeHan
     const resetListbox1Handler = () => {
         setResetListBox(false);
     };
+
+    useEffect(() => {
+        console.log('SecondPageCrosswindCalculator is re-rendering');
+      }, []); // assuming aircraftType is the state you are updating
 
 
 
@@ -194,11 +197,15 @@ const SecondPageCrosswindCalculator = ({ initialAircraftType, setAircraftTypeHan
 
 
                     </Card>
+                    
 
                 </div>
 
 
             </div>
+
+                                {/**All alerts below */}
+
 
             <div style={{ marginBottom: '10px' }}>
                 {initialAircraftType === "DHC-8" && CrosswindComponentNoNegOneDigitProps > 36 &&
@@ -254,13 +261,12 @@ export default SecondPageCrosswindCalculator;
 
 SecondPageCrosswindCalculator.propTypes = {
     initialAircraftType: PropTypes.string,
-    setAircraftTypeHandler: PropTypes.string,
-    initialRunwayHeading: PropTypes.number,
-    setRunwayHeadingHandler: PropTypes.number,
-    initialWindDirection: PropTypes.number,
-    setWindDirectionHandler: PropTypes.number,
+    setAircraftTypeHandler: PropTypes.func, // Change to func instead of string
+    initialRunwayHeading: PropTypes.string,
+    setRunwayHeadingHandler: PropTypes.func, // Change to func
+    initialWindDirection: PropTypes.string,
+    setWindDirectionHandler: PropTypes.func, // Change to func
     initialWindSpeed: PropTypes.number,
-    setWindSpeedHandler: PropTypes.number,
-
-
-};
+    setWindSpeedHandler: PropTypes.func, // Change to func
+  };
+  

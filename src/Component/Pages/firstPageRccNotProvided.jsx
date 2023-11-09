@@ -450,7 +450,7 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
 
 
 
-
+                    {/**All alerts below */}
 
 
                     {showAlert && <div className="flex flex-row bg-red-500 rounded-md p-2 text-white">Please contact dispatch</div>}
@@ -636,7 +636,8 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
             {/****RWYCCC NOT PROVIDED CARS ABOVE****/}
 
 
-
+            <div className="text-center"> 1/8&quot; / 0.13in / 3mm</div>
+            <div className="text-center">COMPACTED SNOW ON A GRAVEL RWY = COMPACTED SNOW/GRAVEL MIX = NOT A CONTAMINANT</div>
 
 
         </div >

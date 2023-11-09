@@ -236,6 +236,8 @@ const FirstPageRccProvided = ({ initialAircraftType, setAircraftTypeHandler,
             </div>
 
 
+            <div className="text-center"> 1/8&quot; / 0.13in / 3mm</div>
+            <div className="text-center">COMPACTED SNOW ON A GRAVEL RWY = COMPACTED SNOW/GRAVEL MIX = NOT A CONTAMINANT</div>
 
 
         </div>

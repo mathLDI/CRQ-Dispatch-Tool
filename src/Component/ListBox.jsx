@@ -14,6 +14,12 @@ export const ChoiceListbox = ({ choices, callback, width, reset, resetCallback, 
 
   const [selected, setSelected] = useState(value);
 
+  //Update local state when the value prop changes//
+
+  useEffect(() => {
+    setSelected(value);
+  }, [value]);
+
   const changeHandler = (v) => {
     setSelected(v);
     callback(v);
