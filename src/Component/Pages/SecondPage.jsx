@@ -14,21 +14,6 @@ const SecondPage = ({
   setWindSpeedHandler
 
 }) => {
-  console.log("setAircraftTypeHandler typeoff:", typeof (setAircraftTypeHandler));
-  console.log("initialAircraftType typeoff:", typeof (initialAircraftType));
-
-  console.log("initialRunwayHeading typeoff:", typeof (initialRunwayHeading));
-
-  console.log("setRunwayHeadingHandler typeoff:", typeof (setRunwayHeadingHandler));
-
-  console.log("initialWindDirection typeoff:", typeof (initialWindDirection));
-
-  console.log("setWindDirectionHandler typeoff:", typeof (setWindDirectionHandler));
-
-  console.log("initialWindSpeed typeoff:", typeof (initialWindSpeed));
-
-  console.log("setWindSpeedHandler typeoff:", typeof (setWindSpeedHandler));
-
 
 
   return (

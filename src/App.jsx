@@ -92,86 +92,94 @@ function App() {
               <p className="text-xl">Please select an item in the menu bar</p>
             ) : (
               <>
-                <div className="flex-1/2 p-2">
-                  {selectedNavItem.includes("RCC Calculator") && (
-                    <div>
-                      <FirstPageSelector
-                        initialRunwayConditionDescriptionGravel1={runwayConditionDescriptionGravel1}
-                        runwayConditionDescriptionGravel1Handler={setRunwayConditionDescriptionGravel1}
-                        initialRunwayConditionDescriptionGravel3={runwayConditionDescriptionGravel3}
-                        setRunwayConditionDescriptionGravel3Handler={setRunwayConditionDescriptionGravel3}
-                        initialRunwayConditionDescriptionPaved2={runwayConditionDescriptionPaved2}
-                        setRunwayConditionDescriptionPaved2Handler={setRunwayConditionDescriptionPaved2}
-                        initialRunwayConditionDescriptionPaved4={runwayConditionDescriptionPaved4}
-                        setRunwayConditionDescriptionPaved4Handler={setRunwayConditionDescriptionPaved4}
-                        initialAircraftType={aircraftType}
-                        setAircraftTypeHandler={setAircraftType}
-                        initialTypeOfReport={typeOfReport}
-                        setTypeOfReportHandler={setTypeOfReport}
-                        initialDropDownPavedOrGravel={dropDownPavedOrGravel}
-                        setDropDownPavedOrGravelHandler={setDropDownPavedOrGravel}
-                        initialContaminationCoverage2={contaminationCoverage2}
-                        setContaminationCoverage2Handler={setContaminationCoverage2}
-                        initialContaminationCoverage3={contaminationCoverage3}
-                        setContaminationCoverage3Handler={setContaminationCoverage3}
-                        initialContaminationCoverage1={contaminationCoverage1}
-                        setContaminationCoverage1Handler={setContaminationCoverage1}
-                        initialContaminationCoverage4={contaminationCoverage4}
-                        setContaminationCoverage4Handler={setContaminationCoverage4}
-                        initialRwycc1={rwycc1}
-                        setRwycc1Handler={setRwycc1}
-                        initialRwycc2={rwycc2}
-                        setRwycc2Handler={setRwycc2}
-                        initialRwycc3={rwycc3}
-                        setRwycc3Handler={setRwycc3}
-                        initialCorrectedLandingDistance={correctedLandingDistance}
-                        setCorrectedLandingDistanceHandler={setCorrectedLandingDistance}
-                        initialRunwayLength={runwayLength}
-                        setRunwayLengthHandler={setRunwayLength}
-                        initialSelectedNavItem={selectedNavItem}
-                      />
-                    </div>
-                  )}
+
+                <div className="flex flex-wrap justify-center">
+                  <div className="flex-1/3 p-2">
+                    {selectedNavItem.includes("RCC Calculator") && (
+                      <div>
+                        <FirstPageSelector
+                          initialRunwayConditionDescriptionGravel1={runwayConditionDescriptionGravel1}
+                          runwayConditionDescriptionGravel1Handler={setRunwayConditionDescriptionGravel1}
+                          initialRunwayConditionDescriptionGravel3={runwayConditionDescriptionGravel3}
+                          setRunwayConditionDescriptionGravel3Handler={setRunwayConditionDescriptionGravel3}
+                          initialRunwayConditionDescriptionPaved2={runwayConditionDescriptionPaved2}
+                          setRunwayConditionDescriptionPaved2Handler={setRunwayConditionDescriptionPaved2}
+                          initialRunwayConditionDescriptionPaved4={runwayConditionDescriptionPaved4}
+                          setRunwayConditionDescriptionPaved4Handler={setRunwayConditionDescriptionPaved4}
+                          initialAircraftType={aircraftType}
+                          setAircraftTypeHandler={setAircraftType}
+                          initialTypeOfReport={typeOfReport}
+                          setTypeOfReportHandler={setTypeOfReport}
+                          initialDropDownPavedOrGravel={dropDownPavedOrGravel}
+                          setDropDownPavedOrGravelHandler={setDropDownPavedOrGravel}
+                          initialContaminationCoverage2={contaminationCoverage2}
+                          setContaminationCoverage2Handler={setContaminationCoverage2}
+                          initialContaminationCoverage3={contaminationCoverage3}
+                          setContaminationCoverage3Handler={setContaminationCoverage3}
+                          initialContaminationCoverage1={contaminationCoverage1}
+                          setContaminationCoverage1Handler={setContaminationCoverage1}
+                          initialContaminationCoverage4={contaminationCoverage4}
+                          setContaminationCoverage4Handler={setContaminationCoverage4}
+                          initialRwycc1={rwycc1}
+                          setRwycc1Handler={setRwycc1}
+                          initialRwycc2={rwycc2}
+                          setRwycc2Handler={setRwycc2}
+                          initialRwycc3={rwycc3}
+                          setRwycc3Handler={setRwycc3}
+                          initialCorrectedLandingDistance={correctedLandingDistance}
+                          setCorrectedLandingDistanceHandler={setCorrectedLandingDistance}
+                          initialRunwayLength={runwayLength}
+                          setRunwayLengthHandler={setRunwayLength}
+                          initialSelectedNavItem={selectedNavItem}
+                        />
+                      </div>
+                    )}
+                  </div>
+
+
+                  <div className="flex-1/3 p-2">
+                    {selectedNavItem.includes('X-Wind') && (
+                      <div className="mt-4">
+                        <SecondPage
+                          initialAircraftType={aircraftType}
+                          setAircraftTypeHandler={setAircraftType}
+                          initialRunwayHeading={runwayHeading}
+                          setRunwayHeadingHandler={setRunwayHeading}
+                          initialWindDirection={windDirection}
+                          setWindDirectionHandler={setWindDirection}
+                          initialWindSpeed={windSpeed}
+                          setWindSpeedHandler={setWindSpeed}
+                        />
+                      </div>
+                    )}
+                  </div>
+
+
+
+
+
+
+                  <div className="flex-1/3">
+                    {selectedNavItem.includes('RCAM PDF') && (
+                      <div className="mt-4 ">
+                        {/** Add the PDF here using an iframe */}
+                        <iframe
+                          title="PDF Viewer"
+                          src="./RCAMv3.3.pdf"
+                          style={{
+                            width: 'calc(100vh - 100px)',
+                            height: 'calc(100vh - 100px)', // Adjust the height as needed
+                            border: 'none',
+                          }}
+                        >
+                          This browser does not support PDFs. Please <a href="./RCAMv3.3.pdf">download the PDF</a>.
+                        </iframe>
+                      </div>
+                    )}
+                  </div>
+
                 </div>
 
-                <div className="flex-1/2 p-2">
-                  {selectedNavItem.includes('X-Wind') && (
-                    <div className="mt-4">
-                      <SecondPage
-                        initialAircraftType={aircraftType}
-                        setAircraftTypeHandler={setAircraftType}
-                        initialRunwayHeading={runwayHeading}
-                        setRunwayHeadingHandler={setRunwayHeading}
-                        initialWindDirection={windDirection}
-                        setWindDirectionHandler={setWindDirection}
-                        initialWindSpeed={windSpeed}
-                        setWindSpeedHandler={setWindSpeed}
-                      />
-                    </div>
-                  )}
-                </div>
-
-                <div className="flex-1/2 p-2">
-                  {selectedNavItem.includes('RCAM PDF') && (
-                    <div className="mt-4 ">
-                      {/** Add the PDF here using an iframe */}
-                      <iframe 
-                      title="PDF Viewer" 
-                      src="./RCAMv3.3.pdf"
-                      style={{
-                        width: 'calc(100vh - 100px)',
-                        height: 'calc(100vh - 100px)', // Adjust the height as needed
-                        border: 'none',
-                      }}
-                      >
-                        This browser does not support PDFs. Please <a href="./RCAMv3.3.pdf">download the PDF</a>.
-                      </iframe>
-                    </div>
-                  )}
-                </div>
-
-
-                
 
 
               </>
