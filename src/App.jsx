@@ -76,13 +76,13 @@ function App() {
     }
   };
 
+  const NAVBAR_HEIGHT = 64;
 
-  console.log("selectedNavItem:", selectedNavItem)
 
   return (
     <div className="h-screen">
       {user !== null && <Navbar selectedNavItem={selectedNavItem} onNavItemClick={handleNavItemClick} />}
-      <div name="red container" className="flex items-center justify-center min-h-screen">
+      <div name="red container" className="flex items-center justify-center" style={{ minHeight: `calc(100vh - ${NAVBAR_HEIGHT}px)` }}>
         {user === null ? ( // Check if the user is not signed in
           <SignIn auth={auth} />
         ) : (
@@ -94,7 +94,7 @@ function App() {
               <>
 
                 <div className="flex flex-wrap justify-center">
-                  <div className="flex-1/3 p-2">
+                  <div className="flex-1/2 p-2">
                     {selectedNavItem.includes("RCC Calculator") && (
                       <div>
                         <FirstPageSelector
@@ -137,7 +137,7 @@ function App() {
                   </div>
 
 
-                  <div className="flex-1/3 p-2">
+                  <div className="flex-1/2 p-2">
                     {selectedNavItem.includes('X-Wind') && (
                       <div className="mt-4">
                         <SecondPage
@@ -159,7 +159,7 @@ function App() {
 
 
 
-                  <div className="flex-1/3">
+                  <div className="flex-1/2">
                     {selectedNavItem.includes('RCAM PDF') && (
                       <div className="mt-4 ">
                         {/** Add the PDF here using an iframe */}

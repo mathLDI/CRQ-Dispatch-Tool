@@ -14,6 +14,7 @@ export const ChoiceListbox = ({ choices, callback, width, reset, resetCallback, 
 
   const [selected, setSelected] = useState(value);
 
+
   //Update local state when the value prop changes//
 
   useEffect(() => {
@@ -32,12 +33,15 @@ export const ChoiceListbox = ({ choices, callback, width, reset, resetCallback, 
     }
   }, [reset]);
 
+
   return (
     <div className={width === undefined ? "w-72" : width}>
       <Listbox value={selected} onChange={changeHandler}>
         <div className="relative">
-          <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left border shadow-md focus:outline-none
-           focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+          <Listbox.Button
+            className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left border shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm"
+            title={selected} // Add the title attribute to display the full text as a tooltip
+          >
             <div className="flex justify-between items-center">
               <span className="block truncate">{selected}</span>
             </div>
@@ -55,7 +59,9 @@ export const ChoiceListbox = ({ choices, callback, width, reset, resetCallback, 
                 >
                   {({ selected }) => (
                     <>
-                      <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`}>{choice}</span>
+                      <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`} style={{ whiteSpace: "normal", maxWidth: "300px" }}>
+                        {choice}
+                      </span>
                       {selected ? (
                         <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
                           <CheckIcon className="h-5 w-5" aria-hidden="true" />
