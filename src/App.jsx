@@ -66,6 +66,23 @@ function App() {
   }, []);
 
 
+  useEffect(() => {
+    // Check if contaminationCoverage2 is equal to 100
+    if (contaminationCoverage2 === 100 || contaminationCoverage2 === 0) {
+      // Reset the state of runwayConditionDescriptionPaved4 to its initial state
+      setRunwayConditionDescriptionPaved4("SELECT PAVED CONTAMINANT");
+      setContaminationCoverage4(0);
+    }
+  
+    // Check if contaminationCoverage1 is equal to 100
+    if (contaminationCoverage1 === 100 || contaminationCoverage1 === 0) {
+      // Reset the state of initialRunwayConditionDescriptionGravel3 to its initial state
+      setRunwayConditionDescriptionGravel3("SELECT GRAVEL CONTAMINANT");
+      setContaminationCoverage3(0);
+    }
+
+  }, [contaminationCoverage1, contaminationCoverage2]); // This useEffect will run whenever contaminationCoverage1 or contaminationCoverage2 changes
+  
 
 
   const handleNavItemClick = (v) => {

@@ -2,10 +2,8 @@ import { useState, useEffect } from "react";
 import { ChoiceListbox } from "../ListBox.jsx";
 import { Card } from "../Card.jsx"
 import { CustomButton } from "../Button.jsx";
-import CrosswindComponent from '../functions/crosswindComponent.js';
-import CrosswindComponentNoNegOneDigit from '../functions/crosswindComponentNoNegOneDigit.js';
-import HeadwindTailwindComponent from '../functions/headwindTailwindComponent.js';
-import HeadwindTailwindComponentNoNegOneDigit from '../functions/headwindTailwindComponentNoNegOneDigit.js';
+import { CrosswindComponent } from '../functions/crosswindComponent.js';
+import { HeadwindTailwindComponent } from '../functions/headwindTailwindComponent.js';
 import PropTypes from "prop-types";
 
 
@@ -13,11 +11,7 @@ import PropTypes from "prop-types";
 const SecondPageCrosswindCalculator = ({ initialAircraftType, setAircraftTypeHandler,
     initialRunwayHeading, setRunwayHeadingHandler, initialWindDirection, setWindDirectionHandler,
     initialWindSpeed, setWindSpeedHandler,
-
-
 }) => {
-
-
 
     const buttonAircraftType = ["DHC-8", "HS-748"];
     const [callDxp] = useState(null);
@@ -26,32 +20,24 @@ const SecondPageCrosswindCalculator = ({ initialAircraftType, setAircraftTypeHan
     const integerRunwayHeading = parseInt(initialRunwayHeading, 10);
     const [resetListBox, setResetListBox] = useState(false);
 
-
-    const CrosswindComponentProps = CrosswindComponent({
+    const CrosswindComp = CrosswindComponent(
         integerWindDirection,
         integerRunwayHeading,
         integerWindSpeed,
+    )
 
-    })
-
-
-    const CrosswindComponentNoNegOneDigitProps = CrosswindComponentNoNegOneDigit({
-        CrosswindComponentProps,
-    })
+    const CrosswindComponentNoNegOneDigit = parseFloat(Math.abs(CrosswindComp,
+    ).toFixed(1));
 
 
 
-    const HeadwindTailwindComponentProps = HeadwindTailwindComponent({
+    const HeadwindTailwindComp = HeadwindTailwindComponent(
         integerWindDirection,
         integerRunwayHeading,
         integerWindSpeed,
-    })
+    )
 
-
-
-    const HeadwindTailwindComponentNoNegOneDigitProps = HeadwindTailwindComponentNoNegOneDigit({
-        HeadwindTailwindComponentProps,
-    })
+    const HeadwindTailwindComponentNoNegOneDigit = parseFloat(Math.abs(HeadwindTailwindComp,).toFixed(1)) ;
 
 
 
@@ -70,9 +56,13 @@ const SecondPageCrosswindCalculator = ({ initialAircraftType, setAircraftTypeHan
 
     useEffect(() => {
         console.log('SecondPageCrosswindCalculator is re-rendering');
-      }, []); // assuming aircraftType is the state you are updating
+    }, []); // assuming aircraftType is the state you are updating
 
 
+
+console.log("CrosswindComp:", CrosswindComp)
+
+console.log("integerWindSpeed:", integerWindSpeed)
 
     return (
 
@@ -164,32 +154,32 @@ const SecondPageCrosswindCalculator = ({ initialAircraftType, setAircraftTypeHan
                     <Card cardTitle={"Results Crosswind"} status={callDxp}>
                         <div>
                             <div className="flex flex-row justify-between p-2">
-                                {HeadwindTailwindComponentProps < 0 && (
+                                {HeadwindTailwindComp < 0 && (
                                     <div>Tailwind:</div>
                                 )}
 
-                                {HeadwindTailwindComponentProps > 0 && (
+                                {HeadwindTailwindComp >= 0 && (
                                     <div>Headwind:</div>
                                 )}
 
                                 <div >
-                                    {HeadwindTailwindComponentNoNegOneDigitProps} kts
+                                    {HeadwindTailwindComponentNoNegOneDigit} kts
                                 </div>
                             </div>
 
                             <div className="flex flex-row justify-between p-2">
 
-                                {CrosswindComponentProps === 0 && (
+                                {CrosswindComp == 0  && (
                                     <div>No Crosswind:</div>)}
 
-                                {CrosswindComponentProps < 0 && (
+                                {CrosswindComp < 0 && (
                                     <div>Left Crosswind:</div>)}
 
-                                {CrosswindComponentProps > 0 && (
+                                {CrosswindComp > 0 && (
                                     <div>Right Crosswind:</div>)}
 
                                 <div >
-                                    {CrosswindComponentNoNegOneDigitProps} kts
+                                    {CrosswindComponentNoNegOneDigit} kts
                                 </div>
                             </div>
 
@@ -197,46 +187,46 @@ const SecondPageCrosswindCalculator = ({ initialAircraftType, setAircraftTypeHan
 
 
                     </Card>
-                    
+
 
                 </div>
 
 
             </div>
 
-                                {/**All alerts below */}
+            {/**All alerts below */}
 
 
             <div style={{ marginBottom: '10px' }}>
-                {initialAircraftType === "DHC-8" && CrosswindComponentNoNegOneDigitProps > 36 &&
+                {initialAircraftType === "DHC-8" && CrosswindComponentNoNegOneDigit > 36 &&
                     (<div className="flex flex-row bg-red-600 rounded-md p-2 text-white justify-center items-center">
                         Over Max Crosswind
                     </div>)}
             </div>
 
             <div style={{ marginBottom: '10px' }}>
-                {initialAircraftType === "DHC-8" && HeadwindTailwindComponentProps < -10 && HeadwindTailwindComponentProps > -21 &&
+                {initialAircraftType === "DHC-8" && HeadwindTailwindComp < -10 && HeadwindTailwindComp > -21 &&
                     (<div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
                         Over Max Tailwind for the DHC-8 106 and DHC-8 300
                     </div>)}
             </div>
 
             <div style={{ marginBottom: '10px' }}>
-                {initialAircraftType === "DHC-8" && HeadwindTailwindComponentProps < -20 &&
+                {initialAircraftType === "DHC-8" && HeadwindTailwindComp < -20 &&
                     (<div className="flex flex-row bg-red-600 rounded-md p-2 text-white justify-center items-center">
                         Over Max Tailwind
                     </div>)}
             </div>
 
             <div style={{ marginBottom: '10px' }}>
-                {initialAircraftType === "HS-748" && CrosswindComponentNoNegOneDigitProps > 30 &&
+                {initialAircraftType === "HS-748" && CrosswindComponentNoNegOneDigit > 30 &&
                     (<div className="flex flex-row bg-red-600 rounded-md p-2 text-white justify-center items-center">
                         Over Max Crosswind
                     </div>)}
             </div>
 
             <div style={{ marginBottom: '10px' }}>
-                {initialAircraftType === "HS-748" && HeadwindTailwindComponentProps < -10 &&
+                {initialAircraftType === "HS-748" && HeadwindTailwindComp < -10 &&
                     (<div className="flex flex-row bg-red-600 rounded-md p-2 text-white justify-center items-center">
                         Over Max Tailwind
                     </div>)}
@@ -268,5 +258,4 @@ SecondPageCrosswindCalculator.propTypes = {
     setWindDirectionHandler: PropTypes.func, // Change to func
     initialWindSpeed: PropTypes.number,
     setWindSpeedHandler: PropTypes.func, // Change to func
-  };
-  
+};

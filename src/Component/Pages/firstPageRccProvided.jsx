@@ -3,14 +3,7 @@ import { ChoiceListbox } from "../ListBox.jsx";
 import { Card } from "../Card.jsx"
 import { CustomButton } from "../Button.jsx";
 import PropTypes from "prop-types";
-
-
-import ReturnLowestRwyccBtw1and2and3 from '../functions/returnLowestRccBtw1and2and3.js';
-import ReturnLowestRwyccBtw1and2 from '../functions/returnLowestRwyccBtw1and2.js';
-import CorrectedLandingRwyccToUse from '../functions/correctedLandingRwyccToUse.js';
-import SelectedRccToMaxXwindLanding from '../functions/selectedRccToMaxXwindLanding.js';
-import SelectedRccToMaxXwindTakeoff from '../functions/selectedRccToMaxXwindTakeoff.js';
-
+import { contaminent } from "../functions/runwayType.js";
 
 const FirstPageRccProvided = ({ initialAircraftType, setAircraftTypeHandler,
     initialRwycc1, setRwycc1Handler, initialRwycc2, setRwycc2Handler, initialRwycc3, setRwycc3Handler,
@@ -21,36 +14,8 @@ const FirstPageRccProvided = ({ initialAircraftType, setAircraftTypeHandler,
     const buttonAircraftType = ["DHC-8", "HS-748"];
     const [callDxp] = useState(null);
     const [resetListBox, setResetListBox] = useState(false);
-    ///////
     const integerRunwayLength = parseInt(initialRunwayLength, 10);
     const integerCorrectedLandingDistance = parseInt(initialCorrectedLandingDistance, 10);
-
-    const ReturnLowestRwyccBtw1and2Props = ReturnLowestRwyccBtw1and2({
-        initialRwycc1, initialRwycc2
-    })
-
-    const ReturnLowestRwyccBtw1and2and3Props = ReturnLowestRwyccBtw1and2and3({
-        initialRwycc1,
-        initialRwycc2,
-        initialRwycc3,
-        integerCorrectedLandingDistance,
-        integerRunwayLength,
-    })
-
-    const CorrectedLandingRwyccToUseProps = CorrectedLandingRwyccToUse({
-        initialRwycc1,
-        integerCorrectedLandingDistance,
-        integerRunwayLength,
-        ReturnLowestRwyccBtw1and2Props,
-        ReturnLowestRwyccBtw1and2and3Props
-    })
-
-
-    const SelectedRccToMaxXwindTakeoffProps = SelectedRccToMaxXwindTakeoff({
-        ReturnLowestRwyccBtw1and2and3Props,
-        initialAircraftType
-    })
-
 
     const resetButtonHandler = () => {
         setResetListBox(true);
@@ -62,12 +27,39 @@ const FirstPageRccProvided = ({ initialAircraftType, setAircraftTypeHandler,
         setAircraftTypeHandler("DHC-8");
     };
 
-
     const resetListbox1Handler = () => {
         setResetListBox(false);
     };
 
+    const ldgDistLongerRwyLgth = integerCorrectedLandingDistance > integerRunwayLength ? true : false;
 
+    const enterDistances =
+        integerCorrectedLandingDistance === 0 ||
+            integerRunwayLength === 0 ||
+            isNaN(integerCorrectedLandingDistance) ||
+            isNaN(integerRunwayLength)
+            ? true
+            : false;
+
+    const CorrectedLandingRwyccToUse =
+        integerCorrectedLandingDistance === 0 || integerRunwayLength === 0 ||
+            isNaN(integerCorrectedLandingDistance) || isNaN(integerRunwayLength)
+            ? undefined
+            : integerCorrectedLandingDistance <= integerRunwayLength * 0.3333
+                ? initialRwycc1
+                : integerCorrectedLandingDistance > integerRunwayLength * 0.3333 && integerCorrectedLandingDistance < integerRunwayLength * 0.6666
+                    ? Math.min(initialRwycc1, initialRwycc2)
+                    : integerCorrectedLandingDistance >= integerRunwayLength * 0.6666
+                        ? Math.min(initialRwycc1, initialRwycc2, initialRwycc3)
+                        : undefined;
+
+    const lowestRcc = Math.min(initialRwycc1, initialRwycc2, initialRwycc3);
+
+    const contam = contaminent;
+
+    const selectedRccToMaxXwindLandingTakeoff = initialAircraftType === "HS-748" && lowestRcc === 6 ? 30 : contam.find(item => item.code === lowestRcc)?.maxCrosswind;
+
+    const selectedRccToMaxXwindLanding = initialAircraftType === "HS-748" && CorrectedLandingRwyccToUse === 6 ? 30 : contam.find(item => item.code === CorrectedLandingRwyccToUse)?.maxCrosswind;
 
     return (
 
@@ -144,7 +136,6 @@ const FirstPageRccProvided = ({ initialAircraftType, setAircraftTypeHandler,
                         />
                     </div>
 
-
                     <div className="p-2">
                         <CustomButton
                             title={"Reset RCC and Distances"} onClickCallback={resetButtonHandler} />
@@ -159,20 +150,19 @@ const FirstPageRccProvided = ({ initialAircraftType, setAircraftTypeHandler,
                         <div>
                             <div className="flex flex-row justify-between p-2">
                                 <div>RCC code:</div>
-                                {CorrectedLandingRwyccToUseProps === "Corrected distance is longer than runway length!" || CorrectedLandingRwyccToUseProps === "Enter Distances" ? "" :
+                                {CorrectedLandingRwyccToUse === "Corrected distance is longer than runway length!" || CorrectedLandingRwyccToUse === "Enter Distances" ? "" :
 
-                                    <div className={`flex ${ReturnLowestRwyccBtw1and2and3Props === 0 ? 'text-red-500' : ''}`}>
-                                        {ReturnLowestRwyccBtw1and2and3Props}
+                                    <div className={`flex ${lowestRcc === 0 ? 'text-red-500' : ''}`}>
+                                        {lowestRcc}
                                     </div>
                                 }
-
 
                             </div>
 
                             <div className="flex flex-row justify-between p-2">
                                 <div>Max crosswind:</div>
-                                <div className={`flex ${ReturnLowestRwyccBtw1and2and3Props === 0 ? 'text-red-500' : ''}`}>
-                                    {SelectedRccToMaxXwindTakeoffProps}
+                                <div className={`flex ${lowestRcc === 0 ? 'text-red-500' : ''}`}>
+                                    {selectedRccToMaxXwindLandingTakeoff }
                                 </div>
                             </div>
 
@@ -187,71 +177,49 @@ const FirstPageRccProvided = ({ initialAircraftType, setAircraftTypeHandler,
                         <div>
                             <div className="flex flex-row justify-between p-2">
                                 <div>RCC code:</div>
-                                <div className={`flex ${CorrectedLandingRwyccToUseProps === 0 ? 'text-red-500' : ''}`}>
-                                    <CorrectedLandingRwyccToUse
-                                        initialRwycc1={initialRwycc1} // Pass rwycc1 as a prop
-                                        integerCorrectedLandingDistance={integerCorrectedLandingDistance}
-                                        integerRunwayLength={integerRunwayLength}
-                                        ReturnLowestRwyccBtw1and2Props={ReturnLowestRwyccBtw1and2Props}
-                                        ReturnLowestRwyccBtw1and2and3Props={ReturnLowestRwyccBtw1and2and3Props}
-                                    />
+                                <div className={`flex ${CorrectedLandingRwyccToUse === 0 ? 'text-red-500' : ''}`}>
+                                    {CorrectedLandingRwyccToUse}
                                 </div>
                             </div>
 
                             <div className="flex flex-row justify-between p-2">
                                 <div>Max crosswind:</div>
-                                <div className={`flex ${CorrectedLandingRwyccToUseProps === 0 ? 'text-red-500' : ''}`}>
-                                    <SelectedRccToMaxXwindLanding
-                                        CorrectedLandingRwyccToUseProps={CorrectedLandingRwyccToUseProps}
-                                        initialAircraftType={initialAircraftType}
-                                    />
+                                <div className={`flex ${CorrectedLandingRwyccToUse === 0 ? 'text-red-500' : ''}`}>
+                                  {selectedRccToMaxXwindLanding}
 
                                 </div>
                             </div>
 
                         </div>
                         <div style={{ marginBottom: '10px' }}>
-                            {CorrectedLandingRwyccToUseProps === true &&
+                            {ldgDistLongerRwyLgth === true &&
                                 (<div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
                                     Corrected distance is longer than runway length!
                                 </div>)}
                         </div>
 
                         <div style={{ marginBottom: '10px' }}>
-                            {CorrectedLandingRwyccToUseProps === false &&
+                            {enterDistances === true &&
                                 (<div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
                                     Enter Distances
                                 </div>)}
                         </div>
 
-
-
-
-
                     </Card>
 
                 </div>
-
-
             </div>
-
 
             <div className="text-center"> 1/8&quot; / 0.13in / 3mm</div>
             <div className="text-center">COMPACTED SNOW ON A GRAVEL RWY = COMPACTED SNOW/GRAVEL MIX = NOT A CONTAMINANT</div>
 
-
         </div>
 
-
-
-
     );
-
 
 }
 
 export default FirstPageRccProvided;
-
 
 FirstPageRccProvided.propTypes = {
     initialAircraftType: PropTypes.string,

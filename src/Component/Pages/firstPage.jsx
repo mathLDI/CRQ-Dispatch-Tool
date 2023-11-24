@@ -19,7 +19,7 @@ const FirstPageSelector = ({ initialRunwayConditionDescriptionGravel1, runwayCon
     initialRwycc2, setRwycc2Handler, initialRwycc3, setRwycc3Handler, initialCorrectedLandingDistance,
     setCorrectedLandingDistanceHandler, initialRunwayLength, setRunwayLengthHandler, initialContaminationCoverage1,
     setContaminationCoverage1Handler, initialContaminationCoverage4, setContaminationCoverage4Handler,
-    initialSelectedNavItem,
+    
 }) => {
 
     const buttonTypeOfReportChoices = ["RCC Not Provided", "RCC Provided"];
