@@ -11,9 +11,16 @@ const SecondPage = ({
   initialWindDirection,
   setWindDirectionHandler,
   initialWindSpeed,
-  setWindSpeedHandler
+  setWindSpeedHandler,
+  initialMagneticVar,
+  setMagneticVarHandler,
+  initialEastOrWestVar,
+  setEastOrWestVarHandler,
 
 }) => {
+
+
+
 
 
   return (
@@ -29,6 +36,9 @@ const SecondPage = ({
             initialRunwayHeading={initialRunwayHeading} setRunwayHeadingHandler={setRunwayHeadingHandler}
             initialWindDirection={initialWindDirection} setWindDirectionHandler={setWindDirectionHandler}
             initialWindSpeed={initialWindSpeed} setWindSpeedHandler={setWindSpeedHandler}
+            initialMagneticVar={initialMagneticVar} setMagneticVarHandler={setMagneticVarHandler}
+            initialEastOrWestVar={initialEastOrWestVar}
+            setEastOrWestVarHandler={setEastOrWestVarHandler}
           />}
 
         </div>
@@ -52,6 +62,10 @@ SecondPage.propTypes = {
   setWindDirectionHandler: PropTypes.number,
   initialWindSpeed: PropTypes.number,
   setWindSpeedHandler: PropTypes.number,
+  initialMagneticVar: PropTypes.number,
+  setMagneticVarHandler: PropTypes.number,
+  initialEastOrWestVar: PropTypes.number,
+  setEastOrWestVarHandler: PropTypes.number
 
 
 };

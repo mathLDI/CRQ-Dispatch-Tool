@@ -26,7 +26,6 @@ function classNames(...classes) {
 export default function Navbar({ selectedNavItem, onNavItemClick }) {
 
 
-  console.log("selectedNavItem from NavBar:", selectedNavItem)
 
   const [activeButtons, setActiveButtons] = useState(
     navigation.reduce((acc, item) => {

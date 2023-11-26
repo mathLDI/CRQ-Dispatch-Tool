@@ -7,7 +7,6 @@ import { contaminent } from "../functions/runwayType.js";
 import { RccToUse } from "../functions/finalRcc.js";
 
 
-
 const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, runwayConditionDescriptionGravel1Handler,
     initialAircraftType, setAircraftTypeHandler,
     initialContaminationCoverage2, setContaminationCoverage2Handler,
@@ -108,15 +107,14 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
 
     const selectedRccToMaxXwind = initialAircraftType === "HS-748" && rccX === 6 ? 30 : contam.find(item => item.code === rccX)?.maxCrosswind;
 
-    console.log("selectedRccToMaxXwind:", selectedRccToMaxXwind)
-
-    console.log("rccx:", rccX)
-
+ 
 
     return (
 
         <div>
             <Card cardTitle={"RWYCC Not Provided"} status={null}>
+                {/**delete function below!!!!!! */}
+                { }
                 <div>
                     <div className="flex flex-row justify-between items-center p-2">
                         <div>Aircraft type:</div>
@@ -171,7 +169,7 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
                         initialRunwayConditionDescriptionPaved2 !== '100% Compacted Snow: -15ºC and Colder OAT' &&
                         initialRunwayConditionDescriptionPaved2 !== '100% Compact Snow: Warmer than -15ºC OAT' &&
                         initialRunwayConditionDescriptionPaved2 !== 'Water on top of 100% Compacted Snow'
-                        && rcc.topPercentageSelect !== 0 && (initialContaminationCoverage2 !== 0 && initialContaminationCoverage2 !== 100 ) &&  (
+                        && rcc.topPercentageSelect !== 0 && (initialContaminationCoverage2 !== 0 && initialContaminationCoverage2 !== 100) && (
                             <div className="flex flex-row justify-between items-center p-2 mb-2">
                                 <div>Contaminant 2: </div>
                                 <div className="flex flex-row gap-4">
@@ -226,7 +224,7 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
                     )}
 
                     {initialRunwayConditionDescriptionGravel1 !== "SELECT GRAVEL CONTAMINANT" && initialDropDownPavedOrGravel === "GRAVEL"
-                        && (initialContaminationCoverage1 !== 0 && initialContaminationCoverage1 !== 100 ) &&  (
+                        && (initialContaminationCoverage1 !== 0 && initialContaminationCoverage1 !== 100) && (
                             <div className="flex flex-row justify-between items-center p-2 mb-2">
                                 <div className="flex px-0">Contaminant 2: </div>
                                 <div className="flex flex-row gap-4">
@@ -294,7 +292,7 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
 
 
 
-                    {/**All alerts below */}    
+                    {/**All alerts below */}
 
 
                     {showAlert && <div className="flex flex-row bg-red-500 rounded-md p-2 text-white">Please contact dispatch</div>}

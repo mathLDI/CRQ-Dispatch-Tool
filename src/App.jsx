@@ -45,6 +45,8 @@ function App() {
   const [runwayHeading, setRunwayHeading] = useState(0);
   const [windDirection, setWindDirection] = useState(0);
   const [windSpeed, setWindSpeed] = useState(0);
+  const [magneticVar, setMagneticVar] = useState(0);
+  const [eastOrWestVar, setEastOrWestVar] = useState("West")
 
 
   const [user, setUser] = useState(null);
@@ -166,6 +168,11 @@ function App() {
                           setWindDirectionHandler={setWindDirection}
                           initialWindSpeed={windSpeed}
                           setWindSpeedHandler={setWindSpeed}
+                          initialMagneticVar={magneticVar}
+                          setMagneticVarHandler={setMagneticVar}
+                          initialEastOrWestVar={eastOrWestVar}
+                          setEastOrWestVarHandler={setEastOrWestVar}
+
                         />
                       </div>
                     )}

@@ -10,20 +10,29 @@ import PropTypes from "prop-types";
 
 const SecondPageCrosswindCalculator = ({ initialAircraftType, setAircraftTypeHandler,
     initialRunwayHeading, setRunwayHeadingHandler, initialWindDirection, setWindDirectionHandler,
-    initialWindSpeed, setWindSpeedHandler,
+    initialWindSpeed, setWindSpeedHandler, initialMagneticVar, setMagneticVarHandler, initialEastOrWestVar, setEastOrWestVarHandler
 }) => {
 
     const buttonAircraftType = ["DHC-8", "HS-748"];
+    const buttonEastOrWest = ["West", "East"];
     const [callDxp] = useState(null);
     const integerWindDirection = parseInt(initialWindDirection, 10);
     const integerWindSpeed = parseInt(initialWindSpeed, 10);
     const integerRunwayHeading = parseInt(initialRunwayHeading, 10);
+    const integerInitialMagneticVar = parseInt(initialMagneticVar, 10);
+
+    console.log("initialMagneticVar:", typeof (integerInitialMagneticVar))
+
+
+
     const [resetListBox, setResetListBox] = useState(false);
 
     const CrosswindComp = CrosswindComponent(
         integerWindDirection,
         integerRunwayHeading,
         integerWindSpeed,
+        initialEastOrWestVar,
+        integerInitialMagneticVar
     )
 
     const CrosswindComponentNoNegOneDigit = parseFloat(Math.abs(CrosswindComp,
@@ -35,9 +44,11 @@ const SecondPageCrosswindCalculator = ({ initialAircraftType, setAircraftTypeHan
         integerWindDirection,
         integerRunwayHeading,
         integerWindSpeed,
+        initialEastOrWestVar,
+        integerInitialMagneticVar
     )
 
-    const HeadwindTailwindComponentNoNegOneDigit = parseFloat(Math.abs(HeadwindTailwindComp,).toFixed(1)) ;
+    const HeadwindTailwindComponentNoNegOneDigit = parseFloat(Math.abs(HeadwindTailwindComp,).toFixed(1));
 
 
 
@@ -47,6 +58,7 @@ const SecondPageCrosswindCalculator = ({ initialAircraftType, setAircraftTypeHan
         setRunwayHeadingHandler(0);
         setWindSpeedHandler(0);
         setAircraftTypeHandler("DHC-8");
+        setMagneticVarHandler(0);
     };
 
 
@@ -59,10 +71,7 @@ const SecondPageCrosswindCalculator = ({ initialAircraftType, setAircraftTypeHan
     }, []); // assuming aircraftType is the state you are updating
 
 
-
-console.log("CrosswindComp:", CrosswindComp)
-
-console.log("integerWindSpeed:", integerWindSpeed)
+    console.log("CrosswindComponent:", CrosswindComp)
 
     return (
 
@@ -101,6 +110,55 @@ console.log("integerWindSpeed:", integerWindSpeed)
                                 }
                             }}
                         />
+                    </div>
+
+                    {/**new section for magnetic variation below */}
+
+                    <div className="flex flex-row justify-between items-center p-2">
+                        <div>Magnetic Variation:</div>
+
+                        <div className="flex ">
+
+                        
+
+                            <div className="flex justify-end w-20 pr-10  ">
+
+                                <ChoiceListbox
+                                    value={initialEastOrWestVar}
+                                    choices={buttonEastOrWest}
+                                    callback={setEastOrWestVarHandler}
+                                    reset={resetListBox}
+                                    resetCallback={resetListbox1Handler}
+
+                                />
+                            </div>
+
+
+                            <div className="p-2">
+                                <input
+                                    type="number"
+                                    max={20}
+                                    min={0}
+                                    value={integerInitialMagneticVar} // Replace 'yourValueState' with the state you want to manage the input's value
+                                    onChange={(e) => {
+                                        // Handle input value changes here
+                                        const v = e.target.value;
+                                        // Ensure the input value is a non-negative number
+                                        if (!isNaN(v) && v >= 0 && v <= 20) {
+                                            setMagneticVarHandler(v); // Update the state with the new value
+                                        }
+                                    }}
+                                />
+                            </div>
+
+
+
+                        </div>
+
+
+
+
+
                     </div>
 
                     <div className="flex flex-row justify-between items-center p-2">
@@ -169,7 +227,7 @@ console.log("integerWindSpeed:", integerWindSpeed)
 
                             <div className="flex flex-row justify-between p-2">
 
-                                {CrosswindComp == 0  && (
+                                {CrosswindComp == 0 && (
                                     <div>No Crosswind:</div>)}
 
                                 {CrosswindComp < 0 && (
@@ -258,4 +316,9 @@ SecondPageCrosswindCalculator.propTypes = {
     setWindDirectionHandler: PropTypes.func, // Change to func
     initialWindSpeed: PropTypes.number,
     setWindSpeedHandler: PropTypes.func, // Change to func
+    initialEastOrWestVar: PropTypes.string,
+    setEastOrWestVarHandler: PropTypes.func,
+    initialMagneticVar: PropTypes.number,
+    setMagneticVarHandler: PropTypes.func,
 };
+
