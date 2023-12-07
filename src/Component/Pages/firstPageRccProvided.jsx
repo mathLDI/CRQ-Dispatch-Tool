@@ -5,10 +5,15 @@ import { CustomButton } from "../Button.jsx";
 import PropTypes from "prop-types";
 import { contaminent } from "../functions/runwayType.js";
 
-const FirstPageRccProvided = ({ initialAircraftType, setAircraftTypeHandler,
-    initialRwycc1, setRwycc1Handler, initialRwycc2, setRwycc2Handler, initialRwycc3, setRwycc3Handler,
-    initialCorrectedLandingDistance, setCorrectedLandingDistanceHandler, initialRunwayLength, setRunwayLengthHandler,
-}) => {
+const FirstPageRccProvided = (props) => {
+
+
+    const {
+        initialAircraftType, setAircraftTypeHandler,
+        initialRwycc1, setRwycc1Handler, initialRwycc2, setRwycc2Handler, initialRwycc3, setRwycc3Handler,
+        initialCorrectedLandingDistance, setCorrectedLandingDistanceHandler, initialRunwayLength, setRunwayLengthHandler,
+      } = props;
+
 
     const rwyccChoices = [6, 5, 4, 3, 2, 1, 0];
     const buttonAircraftType = ["DHC-8", "HS-748"];

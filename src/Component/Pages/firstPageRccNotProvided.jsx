@@ -7,17 +7,22 @@ import { contaminent } from "../functions/runwayType.js";
 import { RccToUse } from "../functions/finalRcc.js";
 
 
-const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, runwayConditionDescriptionGravel1Handler,
-    initialAircraftType, setAircraftTypeHandler,
-    initialContaminationCoverage2, setContaminationCoverage2Handler,
-    initialContaminationCoverage3, setContaminationCoverage3Handler,
-    initialContaminationCoverage1, setContaminationCoverage1Handler,
-    initialContaminationCoverage4, setContaminationCoverage4Handler,
-    initialRunwayConditionDescriptionPaved2, setRunwayConditionDescriptionPaved2Handler,
-    initialDropDownPavedOrGravel, setDropDownPavedOrGravelHandler,
-    initialRunwayConditionDescriptionGravel3, setRunwayConditionDescriptionGravel3Handler,
-    initialRunwayConditionDescriptionPaved4, setRunwayConditionDescriptionPaved4Handler,
-}) => {
+const FirstPageRccNotProvided = (props) => {
+
+
+    const {
+        initialRunwayConditionDescriptionGravel1, runwayConditionDescriptionGravel1Handler,
+        initialAircraftType, setAircraftTypeHandler,
+        initialContaminationCoverage2, setContaminationCoverage2Handler,
+        initialContaminationCoverage3, setContaminationCoverage3Handler,
+        initialContaminationCoverage1, setContaminationCoverage1Handler,
+        initialContaminationCoverage4, setContaminationCoverage4Handler,
+        initialRunwayConditionDescriptionPaved2, setRunwayConditionDescriptionPaved2Handler,
+        initialDropDownPavedOrGravel, setDropDownPavedOrGravelHandler,
+        initialRunwayConditionDescriptionGravel3, setRunwayConditionDescriptionGravel3Handler,
+        initialRunwayConditionDescriptionPaved4, setRunwayConditionDescriptionPaved4Handler,
+      } = props;
+
 
     const allRunwayConditionDescription = [
         initialRunwayConditionDescriptionGravel1,
@@ -31,7 +36,6 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
     const buttonAircraftType = ["DHC-8", "HS-748"];
     const contaminationCoverage2List = [0, 10, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90, 100,];
     const contaminationCoverage3List = [0, 10, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90, 100,];
-    const [showAlert] = useState(false);
     const [callDxp] = useState(null);
     const [resetListBox, setResetListBox] = useState(false);
 
@@ -295,7 +299,6 @@ const FirstPageRccNotProvided = ({ initialRunwayConditionDescriptionGravel1, run
                     {/**All alerts below */}
 
 
-                    {showAlert && <div className="flex flex-row bg-red-500 rounded-md p-2 text-white">Please contact dispatch</div>}
 
                 </div>
 

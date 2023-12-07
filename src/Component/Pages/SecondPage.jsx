@@ -1,71 +1,35 @@
 // SecondPage.jsx
-import SecondPageCrosswindCalculator from '../Pages/SecondPageCrosswindCalculator.jsx'
-import PropTypes from 'prop-types'; 
 
+import SecondPageCrosswindCalculator from '../Pages/SecondPageCrosswindCalculator.jsx';
+import PropTypes from 'prop-types';
 
-const SecondPage = ({
-  setAircraftTypeHandler,
-  initialAircraftType,
-  initialRunwayHeading,
-  setRunwayHeadingHandler,
-  initialWindDirection,
-  setWindDirectionHandler,
-  initialWindSpeed,
-  setWindSpeedHandler,
-  initialMagneticVar,
-  setMagneticVarHandler,
-  initialEastOrWestVar,
-  setEastOrWestVarHandler,
-
-}) => {
-
-
-
-
-
+const SecondPage = (props) => {
   return (
-
     <div className='flex justify-around '>
-
-      <div name="secondpage" className="flex border-2 rounded p-3    bg-gray-100">
+      <div name="secondpage" className="flex border-2 rounded p-3 bg-gray-100">
         <div>
-
-
-          {<SecondPageCrosswindCalculator
-            initialAircraftType={initialAircraftType} setAircraftTypeHandler={setAircraftTypeHandler}
-            initialRunwayHeading={initialRunwayHeading} setRunwayHeadingHandler={setRunwayHeadingHandler}
-            initialWindDirection={initialWindDirection} setWindDirectionHandler={setWindDirectionHandler}
-            initialWindSpeed={initialWindSpeed} setWindSpeedHandler={setWindSpeedHandler}
-            initialMagneticVar={initialMagneticVar} setMagneticVarHandler={setMagneticVarHandler}
-            initialEastOrWestVar={initialEastOrWestVar}
-            setEastOrWestVarHandler={setEastOrWestVarHandler}
-          />}
-
+          {/* Use the spread operator to pass all props to SecondPageCrosswindCalculator */}
+          <SecondPageCrosswindCalculator {...props} />
         </div>
       </div>
-
     </div>
-
-
   );
-}
-
-export default SecondPage;
-
+};
 
 SecondPage.propTypes = {
-  initialAircraftType: PropTypes.string,
   setAircraftTypeHandler: PropTypes.func,
-  initialRunwayHeading: PropTypes.string,
-  setRunwayHeadingHandler: PropTypes.number,
-  initialWindDirection: PropTypes.string,
-  setWindDirectionHandler: PropTypes.number,
+  initialAircraftType: PropTypes.string,
+  setRunwayHeadingHandler: PropTypes.func,
+  initialRunwayHeading: PropTypes.number,
+  setWindDirectionHandler: PropTypes.func,
+  initialWindDirection: PropTypes.number,
+  setWindSpeedHandler: PropTypes.func,
   initialWindSpeed: PropTypes.number,
-  setWindSpeedHandler: PropTypes.number,
+  setMagneticVarHandler: PropTypes.func,
   initialMagneticVar: PropTypes.number,
-  setMagneticVarHandler: PropTypes.number,
+  setEastOrWestVarHandler: PropTypes.func,
   initialEastOrWestVar: PropTypes.number,
-  setEastOrWestVarHandler: PropTypes.number
-
-
+  // ... other prop types
 };
+
+export default SecondPage;
