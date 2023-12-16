@@ -97,6 +97,7 @@ const SecondPageCrosswindCalculator = ({ initialAircraftType, setAircraftTypeHan
                     <div className="flex flex-row justify-between items-center p-2">
                         <div>Runway Heading:</div>
                         <input
+                            className="flex dark:bg-black"
                             type="number"
                             max={360}
                             min={0}
@@ -119,7 +120,7 @@ const SecondPageCrosswindCalculator = ({ initialAircraftType, setAircraftTypeHan
 
                         <div className="flex ">
 
-                        
+
 
                             <div className="flex justify-end w-20 pr-10  ">
 
@@ -136,6 +137,7 @@ const SecondPageCrosswindCalculator = ({ initialAircraftType, setAircraftTypeHan
 
                             <div className="p-2">
                                 <input
+                                    className="flex dark:bg-black"
                                     type="number"
                                     max={20}
                                     min={0}
@@ -155,15 +157,12 @@ const SecondPageCrosswindCalculator = ({ initialAircraftType, setAircraftTypeHan
 
                         </div>
 
-
-
-
-
                     </div>
 
                     <div className="flex flex-row justify-between items-center p-2">
                         <div>Wind Direction:</div>
                         <input
+                            className="flex dark:bg-black"
                             type="number"
                             max={360}
                             min={0}
@@ -182,6 +181,7 @@ const SecondPageCrosswindCalculator = ({ initialAircraftType, setAircraftTypeHan
                     <div className="flex flex-row justify-between items-center p-2">
                         <div>Wind Speed:</div>
                         <input
+                            className="flex dark:bg-black"
                             type="number"
                             max={200}
                             min={0}

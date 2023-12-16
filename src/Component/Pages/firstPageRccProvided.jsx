@@ -105,9 +105,10 @@ const FirstPageRccProvided = (props) => {
                             resetCallback={resetListbox1Handler} />
                     </div>
 
-                    <div className="flex flex-row justify-between items-center p-2">
+                    <div className="flex flex-row justify-between items-center p-2 ">
                         <div>Corrected TLR Landing Distance:</div>
                         <input
+                        className="flex dark:bg-black"
                             type="number"
                             max={99999}
                             min={1000}
@@ -126,6 +127,7 @@ const FirstPageRccProvided = (props) => {
                     <div className="flex flex-row justify-between items-center p-2">
                         <div>Landing Runway Length:</div>
                         <input
+                         className="flex dark:bg-black"
                             type="number"
                             max={99999}
                             min={1000}

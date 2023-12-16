@@ -12,7 +12,7 @@ export const Card = ({ children, cardTitle, status }) => {
     //change md:w-[500px] for a bigger card
     <div className="w-full md:w-[800px] mb-8 "> 
       <div className="flex items-center ">
-        <div className="pb-2 pr-2 text-2xl font-bold tracking-tight text-gray-700">{cardTitle}</div>
+        <div className="pb-2 pr-2 text-2xl font-bold tracking-tight text-default dark:text-dark">{cardTitle}</div>
         <div
           className={
             status === undefined
@@ -28,8 +28,8 @@ export const Card = ({ children, cardTitle, status }) => {
         ></div>
       </div>
 
-      <div className="w-full bg-white rounded-xl border-gray-200 shadow-lg">
-        <div className="block p-4 rounded-lg">{children}</div>
+      <div className="w-full bg-white dark:bg-gray-900 rounded-xl border-gray-200 shadow-lg">
+        <div className="block p-4 rounded-lg ">{children}</div>
       </div>
     </div>
   );

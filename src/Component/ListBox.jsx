@@ -39,7 +39,9 @@ export const ChoiceListbox = ({ choices, callback, width, reset, resetCallback, 
       <Listbox value={selected} onChange={changeHandler}>
         <div className="relative">
           <Listbox.Button
-            className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left border shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm"
+            className="relative w-full cursor-default rounded-lg bg-white dark:bg-black py-2 pl-3 pr-10 text-left border shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2
+             focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2
+              focus-visible:ring-offset-orange-300 sm:text-sm "
             title={selected} // Add the title attribute to display the full text as a tooltip
           >
             <div className="flex justify-between items-center">
@@ -54,7 +56,7 @@ export const ChoiceListbox = ({ choices, callback, width, reset, resetCallback, 
               {choices.map((choice, choiceIdx) => (
                 <Listbox.Option
                   key={choiceIdx}
-                  className={({ active }) => `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-blue-100 text-blue-900" : "text-gray-900"}`}
+                  className={({ active }) => `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-blue-100 text-blue-900 dark:bg-gray-800" : "text-gray-900"}`}
                   value={choice}
                 >
                   {({ selected }) => (

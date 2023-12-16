@@ -18,8 +18,8 @@
 
         return (
 
-    <div className='flex justify-around  '>     
-        <div name="firstPage" className="flex border-2 rounded p-3    bg-gray-100 ">
+    <div className='flex justify-around '>     
+        <div name="firstPage" className="flex border-2 dark:border-gray-900 rounded p-3 bg-gray-100 dark:bg-gray-700 ">
                 <div >
 
                     <div className="">

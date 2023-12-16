@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 const SecondPage = (props) => {
   return (
     <div className='flex justify-around '>
-      <div name="secondpage" className="flex border-2 rounded p-3 bg-gray-100">
+      <div name="secondpage" className="flex border-2 dark:border-gray-900 rounded p-3 bg-gray-100 dark:bg-gray-700">
         <div>
           {/* Use the spread operator to pass all props to SecondPageCrosswindCalculator */}
           <SecondPageCrosswindCalculator {...props} />

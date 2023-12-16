@@ -268,11 +268,11 @@ const FirstPageRccNotProvided = (props) => {
                         <div>RCC code:</div>
 
                         {initialRunwayConditionDescriptionPaved2.includes("100") && initialContaminationCoverage2 !== 100 ? (
-                            <div className="flex text-white">
+                            <div className="flex text-white dark:text-gray-900">
                                 {rcc.result}
                             </div>
                         ) : (
-                            <div className={`flex ${rcc.result === 0 && SeventyPercentBareAndDryUpgrade === false ? 'text-red-500' : 'text-black'}`}>
+                            <div className={`flex ${rcc.result === 0 && SeventyPercentBareAndDryUpgrade === false ? 'text-red-500' : 'text-black dark:text-white    '}`}>
                                 {rcc.result}
                             </div>
                         )}
@@ -283,11 +283,11 @@ const FirstPageRccNotProvided = (props) => {
                         <div>Max crosswind:</div>
 
                         {initialRunwayConditionDescriptionPaved2.includes("100") && initialContaminationCoverage2 !== 100 ? (
-                            <div className="text-white">
+                            <div className="text-white dark:text-gray-900">
                                 {selectedRccToMaxXwind} kts
                             </div>
                         ) : (
-                            <div className={`flex ${rcc.result === 0 && SeventyPercentBareAndDryUpgrade === false ? 'text-red-500' : 'text-black'}`}>
+                            <div className={`flex ${rcc.result === 0 && SeventyPercentBareAndDryUpgrade === false ? 'text-red-500' : 'text-black dark:text-white'}`}>
                                 {rcc.result === 0 ? 'NO GO' : `${selectedRccToMaxXwind} kts`}
                             </div>
                         )
@@ -307,7 +307,6 @@ const FirstPageRccNotProvided = (props) => {
                 <div style={{ marginBottom: '10px' }}>
                     {performanceCheck === true && initialAircraftType == "DHC-8" && rcc.totalPercentage <= 100 && OneHundredPercentCompactedSnow === false && rcc.result != 0 && (
                         <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
-
                             Dispatch may have to verify the takeoff or Landing distances on the DASH8
                         </div>
                     )}
