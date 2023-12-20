@@ -315,12 +315,26 @@ const FirstPageRccNotProvided = (props) => {
 
 
                 <div style={{ marginBottom: '10px' }}>
-                    {SeventyPercentBareAndDryUpgrade === true && (
+                    {SeventyPercentBareAndDryUpgrade === true && initialDropDownPavedOrGravel === "PAVED" && (
                         <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
                             Code 0 does not need to be considered when the runway is 70% bare and dry or 70% bare and wet, in this case upgrade code 0 to 1. Dispatch may have to verify the takeoff or Landing distances on the DASH8
                         </div>
                     )}
                 </div>
+
+
+                <div style={{ marginBottom: '10px' }}>
+                    {SeventyPercentBareAndDryUpgrade === true && initialDropDownPavedOrGravel === "GRAVEL" && (
+                        <div className="flex flex-row bg-orange-400 rounded-md p-2 text-white justify-center items-center">
+                            Code 0 does not need to be considered when the runway is 70% Compacted snow/gravel Mix, in this case upgrade code 0 to 1. Dispatch may have to verify the takeoff or Landing distances on the DASH8
+                        </div>
+                    )}
+                </div>
+
+
+
+
+
 
                 <div style={{ marginBottom: '10px' }}>
                     {(initialRunwayConditionDescriptionPaved2.includes("100") || initialRunwayConditionDescriptionPaved4.includes("100")) && initialDropDownPavedOrGravel === "PAVED" && rcc.topPercentageSelect !== 100 && (
