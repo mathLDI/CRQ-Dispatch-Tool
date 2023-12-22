@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import './App.css';
 import Navbar from './Component/NavBar.jsx';
 import SecondPage from './Component/Pages/SecondPage.jsx';
 import FirstPageSelector from './Component/Pages/firstPage.jsx';
@@ -6,7 +7,16 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth"; // Import the Firebase Auth SDK
 import SignIn from './Component/Pages/signIn.jsx';
 import { onAuthStateChanged } from "firebase/auth";
+import { pdfjs } from 'react-pdf';
+import { PdfViewer } from "./Component/PdfViewer.jsx";
+import 'react-pdf/dist/Page/AnnotationLayer.css';
 
+
+
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.js',
+  import.meta.url,
+).toString();
 
 const firebaseConfig = {
   apiKey: "AIzaSyAteWHWFvl2Zog0d0cLMprqwrqyrMxf92s",
@@ -43,7 +53,6 @@ function App() {
   const [magneticVar, setMagneticVar] = useState(0);
   const [eastOrWestVar, setEastOrWestVar] = useState("West")
   const [darkMode, setDarkMode] = useState(false);
-
 
   const [user, setUser] = useState(null);
   const app = initializeApp(firebaseConfig);
@@ -93,6 +102,7 @@ function App() {
   };
 
   const NAVBAR_HEIGHT = 64;
+
 
   return (
     <div className={`h-screen ${darkMode ? 'dark' : ''}`} >
@@ -174,30 +184,21 @@ function App() {
 
                   <div className="flex-1/2">
                     {selectedNavItem.includes('RCAM PDF') && (
-                      <div className="mt-4 ">
-                        {/** Add the PDF here using an iframe */}
-                        <iframe
-                          title="PDF Viewer"
-                          src="./RCAMv3.3.pdf"
-                          style={{
-                            width: 'calc(100vh - 100px)',
-                            height: 'calc(100vh - 100px)', // Adjust the height as needed
-                            border: 'none',
-                          }}
-                        >
-                          This browser does not support PDFs. Please <a href="./RCAMv3.3.pdf">download the PDF</a>.
-                        </iframe>
-                      </div>
+                      <PdfViewer />
                     )}
                   </div>
+
+
+
                 </div>
 
               </>
             )}
           </div>
-        )}
-      </div>
-    </div>
+        )
+        }
+      </div >
+    </div >
   );
 
 }

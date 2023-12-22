@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon, MoonIcon } from '@heroicons/react/24/outline'
+import { MoonIcon } from '@heroicons/react/outline'
 import PropTypes from "prop-types";
 import { useState } from "react";
 import logo from '../assets/logo.png';
@@ -10,8 +10,8 @@ import { getAuth } from "firebase/auth";
 const navigation = [
   { name: 'RCC Calculator', href: '#', id: 'rcc' },
   { name: 'X-Wind', href: '#', id: 'xwind' },
+  //{ name: 'RCAM PDF', href: '#', current: false },
   { name: 'RCAM PDF', href: '#', current: false },
-  //{ name: 'Calendar', href: '#', current: false },
 ]
 
 function classNames(...classes) {
@@ -43,6 +43,7 @@ export default function Navbar({ selectedNavItem, onNavItemClick, toggleDarkMode
       console.error("Error signing out:", error);
     }
   };
+
 
   return (
     <Disclosure as="nav" className="bg-gray-800 dark:bg-gray-700 w-full">
@@ -176,7 +177,7 @@ export default function Navbar({ selectedNavItem, onNavItemClick, toggleDarkMode
 }
 
 Navbar.propTypes = {
-  selectedNavItem: PropTypes.string,
+  selectedNavItem: PropTypes.object,
   onNavItemClick: PropTypes.func,
   toggleDarkMode: PropTypes.func,
 };
